@@ -1,3 +1,85 @@
+# Highway driving
+
+## Overview
+---
+In this project, we need to implement a path planning algorithms to drive a car on a highway on a simulator provided by Udacity. The simulator sends car telemetry information (car's position and velocity) and sensor fusion information about the rest of the cars in the highway (Ex. car id, velocity, position). It expects a set of points spaced in time at 0.02 seconds representing the car's trajectory. The communication between the simulator and the path planner is done using WebSocket. The path planner uses the uWebSockets WebSocket implementation to handle this communication. Udacity provides a seed project to start from on this project .  
+
+
+## Rubric points
+---  
+
+## Compilation
+### The code compiles correctly.  
+- Some files are added   
+spline.h : It is the Cubbic Spline interpolation implementation for trajectory planning.   
+fsm.h    : It it the Finite State Machine implementation for longitudinal / lateral control mode management. 
+
+
+## Valid Trajectories
+### The car is able to drive at least 4.32 miles without incident..
+- simulation run more than 4.32 miles without incedint  
+
+### The car drives according to the speed limit.
+- clear  
+
+### Max Acceleration and Jerk are not Exceeded.
+- clear  
+
+### Car does not have collisions.
+- clear   
+
+### The car stays in its lane, except for the time between changing lanes.  
+-  clear  
+
+### The car is able to change lanes
+- Lane change is performed when the speed of the vehicle ahead is slow and the lane change trajectory is safe.  
+
+
+
+
+## Reflection   
+The code is consisted of three parts : 
+
+### Prediction (line 196 - 310)
+In this part, the risk of collision with each target is determined. This is used to determine whether each lane is safe.
+
+- `car_ahead` : flag that foward area targets in driving lane is exist.  
+- `Tgt_vel_ego` : speed of the target in front of the driving lane (Cruise control target speed)  
+- `car_left` : flag that foward area targets in left lane is exist.  
+- `car_left_back` : flag that backward area targets in left lane is exist.  
+- `car_right` : flag that foward area targets in right lane is exist.  
+- `car_right_back` : flag that backward area targets in right lane is exist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
    
