@@ -52,6 +52,39 @@ In this part, the risk of collision with each target is determined. This is used
 
 
 
+### Mode Manager (line 330 - 357)
+In this part, the control mode transition of longitudinal / lateral control using FSM (Finite State Machine) is determined.
+
+1. longitudinal control mode    
+
+| from state | to state | trigger condition | action |
+|:--------:|:------:|:---------------:|:----:|    
+| Normal | Follow | `car_ahead`  | Des_vel = `Tgt_vel_ego`|
+| Follow | Normal | `!car_ahead` | Des_vel = MAX_VEL|
+| Normal | Normal | `!car_ahead`  | Des_vel = MAX_VEL|
+| Follow | Follow | `car_ahead`  | Des_vel = `Tgt_vel_ego`|
+
+2. lateral control mode    
+
+| from state | to state | trigger condition | action |
+|:--------:|:------:|:---------------:|:----:|    
+| laneFollow | laneChangeLeft |`car_ahead` && `!car_left` && `!car_left_back` && `!car_lane_change` && Ego_Lane!= LEFT_LANE| lane--, car_lane_change = true |
+| laneFollow | laneChangeRight |`car_ahead` && `!car_right` && `!car_right_back` && `!car_lane_change` && Ego_Lane != RIGHT_LANE| lane++, car_lane_change = true|
+| laneChangeLeft | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
+| laneChangeRight | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
+
+
+### Controller (line 382 - 541)
+In the part, The ideas and concepts are taken from the Q&A video.
+The trajectories are calculated with the help of splines based on the speed and lane output from the behavior, car coordinates and past path points.
+And to make the path smoother, the step of previous path and waypoint for caculating spline was tunned.
+
+
+
+
+ 
+
+
 
 
 
