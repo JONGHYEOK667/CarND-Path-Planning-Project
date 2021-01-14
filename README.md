@@ -1,3 +1,11 @@
+[//]: # (Image References)
+
+[image1]: ./capture/capture_Finish.jpg "capture_Finish"
+[image2]: ./capture/capture_Normal.jpg "capture_Normal"
+[image3]: ./capture/capture_Follow.jpg "capture_Follow"
+[image4]: ./capture/capture_laneChangeLeft.jpg "capture_laneChangeLeft"
+[image5]: ./capture/capture_laneChangeRight.jpg "capture_laneChangeRight"
+
 # Highway driving
 
 ## Overview
@@ -18,6 +26,8 @@ fsm.h    : It it the Finite State Machine implementation for longitudinal / late
 ## Valid Trajectories
 ### The car is able to drive at least 4.32 miles without incident..
 - simulation run more than 4.32 miles without incedint  
+
+![alt text][image1]
 
 ### The car drives according to the speed limit.
 - clear  
@@ -64,6 +74,10 @@ In this part, the control mode transition of longitudinal / lateral control usin
 | Normal | Normal | `!car_ahead`  | Des_vel = MAX_VEL|
 | Follow | Follow | `car_ahead`  | Des_vel = `Tgt_vel_ego`|
 
+![alt text][image2]
+
+![alt text][image3]
+
 2. lateral control mode    
 
 | from state | to state | trigger condition | action |
@@ -73,7 +87,9 @@ In this part, the control mode transition of longitudinal / lateral control usin
 | laneChangeLeft | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
 | laneChangeRight | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
 
+![alt text][image4]
 
+![alt text][image5]
 ### Controller (line 382 - 541)
 In the part, The ideas and concepts are taken from the Q&A video.
 The trajectories are calculated with the help of splines based on the speed and lane output from the behavior, car coordinates and past path points.
