@@ -193,7 +193,7 @@ int main() {
 
 						
 
-							//___________________ SF Track ________________
+							//___________________ Prediction ________________
 							car_ahead = false;
 							car_left = false;
 							car_left_back = false;
@@ -242,7 +242,7 @@ int main() {
 			
 								bool condi1 = (check_car_s > car_s) && (car_s_pred > check_car_s_pred);
 								bool condi2 = (check_car_s > car_s) && (car_s_pred > check_car_s);
-								bool condi3 = (check_car_s < car_s) && (check_car_s_pred > car_s_pred);
+								bool condi3 = (check_car_s < car_s) && (check_car_s_pred+10 > car_s_pred);
 		
 
 								if (SF_Track_Lane == lane) {
@@ -327,7 +327,7 @@ int main() {
 							std::cout << "Ego_Lane : " << Ego_Lane << std::endl;*/
 
 							
-
+							//___________________ Mode Manager (Finite state machine) ________________
 							// Lat mode control
 							if (car_ahead && !car_left && !car_left_back && !car_lane_change && Ego_Lane!= LEFT_LANE) {
 
@@ -361,6 +361,9 @@ int main() {
 							/*std::cout << "current lane : " << lane << std::endl;
 							std::cout << "current vel : " << ref_vel << std::endl;*/
 
+
+
+							//_________________ Controller ______________
 
 							//_________________ longitudinal controller ______________
 
@@ -441,9 +444,9 @@ int main() {
 							
 
 
-							vector<double> next_wp0 = getXY(car_s + 20, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-							vector<double> next_wp1 = getXY(car_s + 40, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
-							vector<double> next_wp2 = getXY(car_s + 60, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+							vector<double> next_wp0 = getXY(car_s + 30, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+							vector<double> next_wp1 = getXY(car_s + 50, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+							vector<double> next_wp2 = getXY(car_s + 70, (2 + 4 * lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
 
 							ptsx.push_back(next_wp0[0]);
 							ptsx.push_back(next_wp1[0]);
