@@ -1,10 +1,10 @@
 [//]: # (Image References)
 
-[image1]: ./capture/capture_Finish.jpg "capture_Finish"
-[image2]: ./capture/capture_Normal.jpg "capture_Normal"
-[image3]: ./capture/capture_Follow.jpg "capture_Follow"
-[image4]: ./capture/capture_laneChangeLeft.jpg "capture_laneChangeLeft"
-[image5]: ./capture/capture_laneChangeRight.jpg "capture_laneChangeRight"
+[image1]: ./capture/capture_Finish.JPG "capture_Finish"
+[image2]: ./capture/capture_Normal.JPG "capture_Normal"
+[image3]: ./capture/capture_Follow.JPG "capture_Follow"
+[image4]: ./capture/capture_laneChangeLeft.JPG "capture_laneChangeLeft"
+[image5]: ./capture/capture_laneChangeRight.JPG "capture_laneChangeRight"
 
 # Highway driving
 
@@ -74,8 +74,10 @@ In this part, the control mode transition of longitudinal / lateral control usin
 | Normal | Normal | `!car_ahead`  | Des_vel = MAX_VEL|
 | Follow | Follow | `car_ahead`  | Des_vel = `Tgt_vel_ego`|
 
-![alt text][image2]
 
+### Normal state
+![alt text][image2]
+### Follow state
 ![alt text][image3]
 
 2. lateral control mode    
@@ -87,8 +89,9 @@ In this part, the control mode transition of longitudinal / lateral control usin
 | laneChangeLeft | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
 | laneChangeRight | laneFollow | car_lane_change && (lane == Ego_Lane) | car_lane_change = false|
 
+### laneChangeLeft state
 ![alt text][image4]
-
+### laneChangeRight state
 ![alt text][image5]
 ### Controller (line 382 - 541)
 In the part, The ideas and concepts are taken from the Q&A video.
